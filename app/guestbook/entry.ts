@@ -1,9 +1,7 @@
-interface Entry {
-  id: number;
+interface EntryCreate {
   name: string;
   message: string;
   hide: boolean;
-  createdAt: number;
 }
 
-export default Entry;
+export default EntryCreate;

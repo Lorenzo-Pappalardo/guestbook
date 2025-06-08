@@ -4,8 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Toaster } from '@/components/ui/sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CircleCheck, CircleXIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import z from 'zod';
 
 export default function CreationForm() {
@@ -19,7 +22,15 @@ export default function CreationForm() {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    fetch('/api/guestbook', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(res => {
+      toast(res.ok ? 'Your contribution has been registered.' : 'Failed to register your contribution.', {
+        icon: res.ok ? <CircleCheck /> : <CircleXIcon />,
+        position: 'bottom-center'
+      });
+    });
   };
 
   return (
@@ -73,6 +84,7 @@ export default function CreationForm() {
           </Button>
         </form>
       </Form>
+      <Toaster />
     </div>
   );
 }

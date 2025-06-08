@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import Entry from './entry';
+import { GuestbookEntry } from '@/prisma/generated';
 
 export default function History() {
   return (
@@ -18,7 +18,7 @@ export default function History() {
             <TableRow key={entry.id}>
               <TableCell className="font-medium">{entry.name}</TableCell>
               <TableCell>{entry.message}</TableCell>
-              <TableCell>{new Date(entry.createdAt).toLocaleDateString()}</TableCell>
+              <TableCell>{entry.createdAt.toLocaleDateString()}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -27,11 +27,11 @@ export default function History() {
   );
 }
 
-const testData: ReadonlyArray<Entry> = (() => {
+const testData: ReadonlyArray<GuestbookEntry> = (() => {
   const now = Date.now();
   let i = 0;
 
-  const data: Omit<Entry, 'createdAt'>[] = [
+  const data: Omit<GuestbookEntry, 'createdAt'>[] = [
     {
       id: 1,
       name: 'John Doe',
@@ -149,9 +149,9 @@ const testData: ReadonlyArray<Entry> = (() => {
     { id: 20, name: 'Daniel Young', message: 'Highly satisfied with everything.', hide: false }
   ];
 
-  return data.map<Entry>(entry => {
-    const finalisedEntry = entry as Entry;
-    finalisedEntry.createdAt = now - i * 24 * 60 * 60 * 1000;
+  return data.map<GuestbookEntry>(entry => {
+    const finalisedEntry = entry as GuestbookEntry;
+    finalisedEntry.createdAt = new Date(now - i * 24 * 60 * 60 * 1000);
     i++;
     return finalisedEntry;
   });
