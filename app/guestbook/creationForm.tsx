@@ -7,11 +7,14 @@ import { Input } from '@/components/ui/input';
 import { Toaster } from '@/components/ui/sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CircleCheck, CircleXIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import z from 'zod';
 
 export default function CreationForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,6 +33,10 @@ export default function CreationForm() {
         icon: res.ok ? <CircleCheck /> : <CircleXIcon />,
         position: 'bottom-center'
       });
+
+      if (res.ok) {
+        router.refresh();
+      }
     });
   };
 
