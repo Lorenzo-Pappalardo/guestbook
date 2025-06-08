@@ -16,19 +16,27 @@ export default async function History() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Name</TableHead>
+            <TableHead className="w-[200px]">Name</TableHead>
             <TableHead>Message</TableHead>
-            <TableHead>Created at</TableHead>
+            <TableHead className="w-[200px]">Created at</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {guestbookEntries.map(entry => (
-            <TableRow key={entry.id}>
-              <TableCell className="font-medium">{entry.hide ? 'Anonymous user' : entry.name}</TableCell>
-              <TableCell>{entry.message}</TableCell>
-              <TableCell>{entry.createdAt.toLocaleDateString()}</TableCell>
+          {guestbookEntries.length === 0 ? (
+            <TableRow key={'empty'}>
+              <TableCell colSpan={3} className="text-center">
+                No entries yet 🥲
+              </TableCell>
             </TableRow>
-          ))}
+          ) : (
+            guestbookEntries.map(entry => (
+              <TableRow key={entry.id}>
+                <TableCell className="font-medium">{entry.hide ? 'Anonymous user' : entry.name}</TableCell>
+                <TableCell>{entry.message}</TableCell>
+                <TableCell>{entry.createdAt.toLocaleDateString()}</TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </div>
