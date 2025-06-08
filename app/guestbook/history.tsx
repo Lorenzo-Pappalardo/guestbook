@@ -1,10 +1,18 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { GuestbookEntry } from '@/prisma/generated';
+import { GuestbookEntry, PrismaClient } from '@/prisma/generated';
 
-export default function History() {
+export default async function History() {
+  const prisma = new PrismaClient();
+  const guestbookEntries: ReadonlyArray<GuestbookEntry> = await prisma.guestbookEntry.findMany({
+    take: 20,
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
+
   return (
     <div>
-      <h3 className="text-xl font-extrabold tracking-tight text-balance mb-4">Latest 20 contributions</h3>
+      <h3 className="text-xl font-extrabold tracking-tight text-balance mb-4">Latest contributions</h3>
       <Table>
         <TableHeader>
           <TableRow>
@@ -14,9 +22,9 @@ export default function History() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {testData.map(entry => (
+          {guestbookEntries.map(entry => (
             <TableRow key={entry.id}>
-              <TableCell className="font-medium">{entry.name}</TableCell>
+              <TableCell className="font-medium">{entry.hide ? 'Anonymous user' : entry.name}</TableCell>
               <TableCell>{entry.message}</TableCell>
               <TableCell>{entry.createdAt.toLocaleDateString()}</TableCell>
             </TableRow>
