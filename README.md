@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prerequisites
 
-## Getting Started
+- Node.js 20 or above
+- Docker
 
-First, run the development server:
+# Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Make sure Docker is running, then execute `docker compose up -d` in the root directory. This will create the necessary Postgres instance.
+- Make a copy of the `.env.example` file under the root and rename this to `.env`.
+- Set the correct database connection string in the newly created file. Refer to [this guide](https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/connect-your-database-typescript-postgresql) for further details.
+- Execute `npx prisma migrate dev` to sync the database with the Prisma schema.
+- Install npm dependencies via `npm i`.
+- Start the development server using `npm run dev`.
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the homepage.
+- Click on the link to navigate to the _guestbook_ page.
+- Enjoy!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Further developments
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Adding an actual homepage 🤣
+2. Creating a Server Action to call on form submission.
