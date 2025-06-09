@@ -11,7 +11,7 @@ describe('Add a new entry to the guestbook', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/guestbook');
     cy.get('input[name="name"]').type(newEntry.name);
-    cy.get('input[name="message"]').type(newEntry.message);
+    cy.get('textarea[name="message"]').type(newEntry.message);
     if (newEntry.hide) cy.get('input[name="hide"]').check();
   });
 

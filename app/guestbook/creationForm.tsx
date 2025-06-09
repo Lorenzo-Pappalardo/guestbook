@@ -5,6 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Toaster } from '@/components/ui/sonner';
+import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CircleCheck, CircleXIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -50,10 +51,10 @@ export default function CreationForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="John" {...field} />
-                </FormControl>
                 <FormDescription>This is your public display name.</FormDescription>
+                <FormControl>
+                  <Input placeholder="John Wick" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -64,10 +65,10 @@ export default function CreationForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <Input placeholder="Describe your experience" {...field} />
-                </FormControl>
                 <FormDescription>Describe your experience</FormDescription>
+                <FormControl>
+                  <Textarea placeholder="I love pencils." {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -78,10 +79,10 @@ export default function CreationForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Hide name on guestbook</FormLabel>
+                <FormDescription>Check this box to remain anonymous</FormDescription>
                 <FormControl>
                   <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
-                <FormDescription>Check this box to remain anonymous</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
