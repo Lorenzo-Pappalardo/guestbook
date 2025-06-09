@@ -23,8 +23,8 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
-        <div className="grid grid-rows-[auto_1fr] items-center justify-items-center min-h-screen gap-8 px-4 py-2 font-[family-name:var(--font-geist-sans)]">
-          <header className="w-full">
+        <div className="flex flex-col items-center gap-8 px-4 py-2 font-[family-name:var(--font-geist-sans)]">
+          <header className="flex w-full">
             <Link href="/">
               <h1 className="text-3xl font-extrabold tracking-tight text-balance">Always Friday</h1>
             </Link>

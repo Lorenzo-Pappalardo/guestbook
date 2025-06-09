@@ -32,7 +32,7 @@ export default async function History() {
             guestbookEntries.map(entry => (
               <TableRow key={entry.id}>
                 <TableCell className="font-medium">{entry.hide ? 'Anonymous user' : entry.name}</TableCell>
-                <TableCell>{entry.message}</TableCell>
+                <TableCell className='md:whitespace-normal'>{entry.message}</TableCell>
                 <TableCell>{entry.createdAt.toLocaleDateString()}</TableCell>
               </TableRow>
             ))
